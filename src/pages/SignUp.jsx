@@ -1,7 +1,8 @@
-import React, { useState } from "react";
 import axios from "axios";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const url = `http://localhost:4000/api/v1`;
+const url = "http://localhost:4000/api/v1";
 
 function SignUp() {
   const [user, setUser] = useState({
@@ -10,6 +11,8 @@ function SignUp() {
     password: "",
     cpassword: "",
   });
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -20,8 +23,15 @@ function SignUp() {
     e.preventDefault();
 
     axios
-      .post(`${url}/user`, user)
-      .then((res) => console.log(res.data))
+      .post(`${url}/sign-up`, user)
+      .then((res) => {
+        const data = res.data;
+
+        if (data.status === 201) {
+          alert("User Sign up done!");
+          navigate("login");
+        }
+      })
       .catch((err) => console.log(err));
   };
 
