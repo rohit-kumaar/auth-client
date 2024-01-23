@@ -1,8 +1,9 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { FiEye, FiEyeOff } from "react-icons/fi";
-import TogglePassword from "../hooks/TogglePassword";
 import { Link } from "react-router-dom";
+import TogglePassword from "../hooks/TogglePassword";
+import { ROUTE_PATH } from "../routes/path";
 
 const url = "http://localhost:4000/api/v1";
 
@@ -29,7 +30,7 @@ function Login() {
         console.log(data);
 
         if (data.status === 201) {
-          navigate("dashboard");
+          navigate(ROUTE_PATH.DASHBOARD);
         }
       })
       .catch((err) => console.log(err));
@@ -66,7 +67,7 @@ function Login() {
 
         <div className="forget">
           <span>Forget Password</span>
-          <Link to="/">Sign up</Link>
+          <Link to={ROUTE_PATH.DEFAULT}>Sign up</Link>
         </div>
 
         <button className="button">Login</button>

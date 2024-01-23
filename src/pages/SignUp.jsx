@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { Link, useNavigate } from "react-router-dom";
 import TogglePassword from "../hooks/TogglePassword";
+import { ROUTE_PATH } from "../routes/path";
 
 const url = "http://localhost:4000/api/v1";
 
@@ -40,7 +41,7 @@ function SignUp() {
 
         if (data.status === 201) {
           alert("User Sign up done!");
-          navigate("login");
+          navigate(ROUTE_PATH.LOGIN);
         }
       })
       .catch((err) => console.log(err));
@@ -99,7 +100,7 @@ function SignUp() {
 
         <div className="forget">
           <span>Forget Password</span>
-          <Link to="login">Login</Link>
+          <Link to={ROUTE_PATH.LOGIN}>Login</Link>
         </div>
 
         <button className="button">Sign up</button>
