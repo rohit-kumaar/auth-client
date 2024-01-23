@@ -73,3 +73,11 @@ main {
     cursor: pointer;
   }
 }
+
+.forget {
+  @extend %flexBetween;
+
+  > a {
+    color: $black;
+  }
+}

@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import TogglePassword from "../hooks/TogglePassword";
+import { Link } from "react-router-dom";
 
 const url = "http://localhost:4000/api/v1";
 
@@ -61,6 +62,11 @@ function Login() {
           ) : (
             <FiEyeOff className="eye-off" onClick={handleViewPassword} />
           )}
+        </div>
+
+        <div className="forget">
+          <span>Forget Password</span>
+          <Link to="/">Sign up</Link>
         </div>
 
         <button className="button">Login</button>

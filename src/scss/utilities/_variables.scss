@@ -5,9 +5,16 @@ $black: hsl(0, 0%, 0%);
 
 $border: 1px solid $primary;
 
-$linear-gradient: linear-gradient(
-  246deg,
-  $primary 0%,
-  $secondary 60%,
-  hsl(204, 96%, 40%) 100%
-);
+// $linear-gradient: linear-gradient(
+//   246deg,
+//   $primary 0%,
+//   $secondary 60%,
+//   hsl(204, 96%, 40%) 100%
+// );
+
+// $linear-gradient-hover: linear-gradient(
+//   246deg,
+//   rgba(10, 198, 223, 1) 0%,
+//   rgba(36, 104, 211, 1) 60%,
+//   rgba(4, 121, 201, 1) 100%
+// );
