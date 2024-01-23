@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { FiEye, FiEyeOff } from "react-icons/fi";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import TogglePassword from "../hooks/TogglePassword";
 
 const url = "http://localhost:4000/api/v1";
@@ -95,6 +95,11 @@ function SignUp() {
           ) : (
             <FiEyeOff className="eye-off" onClick={handleViewPassword_cp} />
           )}
+        </div>
+
+        <div className="forget">
+          <span>Forget Password</span>
+          <Link to="login">Login</Link>
         </div>
 
         <button className="button">Sign up</button>

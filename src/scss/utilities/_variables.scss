@@ -1,10 +1,13 @@
+$primary: hsl(187, 91%, 46%);
+$secondary: hsl(217, 71%, 48%);
 $white: hsl(0, 0%, 100%);
 $black: hsl(0, 0%, 0%);
-$primary: hsl(187, 91%, 46%);
+
 $border: 1px solid $primary;
+
 $linear-gradient: linear-gradient(
   246deg,
   $primary 0%,
-  hsl(217, 71%, 48%) 60%,
+  $secondary 60%,
   hsl(204, 96%, 40%) 100%
 );

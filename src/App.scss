@@ -8,11 +8,26 @@ main {
   background: url(assets/bg.jpg) no-repeat center center/cover;
 
   form {
+    --mx: 15px;
+    --w: 100%;
+
+    @media screen and (min-width: 768px) {
+      --w: 60%;
+    }
+
+    @media screen and (min-width: 992px) {
+      --w: 50%;
+    }
+
+    @media screen and (min-width: 1200px) {
+      --w: 30%;
+    }
+
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 20px;
-    width: 30%;
+    width: calc(var(--w) - var(--mx));
     background: $white;
     padding: 20px;
     border-radius: 5px;
