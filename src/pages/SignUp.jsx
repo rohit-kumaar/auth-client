@@ -1,10 +1,21 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { FiEye, FiEyeOff } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
+import TogglePassword from "../hooks/TogglePassword";
 
 const url = "http://localhost:4000/api/v1";
 
 function SignUp() {
+  const {
+    togglePassword: togglePassword_p,
+    handleViewPassword: handleViewPassword_p,
+  } = TogglePassword();
+  const {
+    togglePassword: togglePassword_cp,
+    handleViewPassword: handleViewPassword_cp,
+  } = TogglePassword();
+
   const [user, setUser] = useState({
     name: "",
     email: "",
@@ -36,45 +47,59 @@ function SignUp() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <input
-          type="text"
-          placeholder="Enter user name"
-          name="name"
-          onChange={handleChange}
-        />
-      </div>
+    <main>
+      <form onSubmit={handleSubmit}>
+        <h1>Sign Up</h1>
 
-      <div>
-        <input
-          type="text"
-          placeholder="Enter your email"
-          name="email"
-          onChange={handleChange}
-        />
-      </div>
+        <div>
+          <input
+            type="text"
+            placeholder="Enter user name"
+            name="name"
+            onChange={handleChange}
+          />
+        </div>
 
-      <div>
-        <input
-          type="password"
-          placeholder="Enter password"
-          name="password"
-          onChange={handleChange}
-        />
-      </div>
+        <div>
+          <input
+            type="text"
+            placeholder="Enter your email"
+            name="email"
+            onChange={handleChange}
+          />
+        </div>
 
-      <div>
-        <input
-          type="password"
-          placeholder="Confirm your password"
-          name="cpassword"
-          onChange={handleChange}
-        />
-      </div>
+        <div className="password__wrapper">
+          <input
+            type={togglePassword_p ? "text" : "password"}
+            placeholder="Enter password"
+            name="password"
+            onChange={handleChange}
+          />
+          {togglePassword_p ? (
+            <FiEye className="eye" onClick={handleViewPassword_p} />
+          ) : (
+            <FiEyeOff className="eye-off" onClick={handleViewPassword_p} />
+          )}
+        </div>
 
-      <button>Sign up</button>
-    </form>
+        <div className="password__wrapper">
+          <input
+            type={togglePassword_cp ? "text" : "password"}
+            placeholder="Confirm your password"
+            name="cpassword"
+            onChange={handleChange}
+          />
+          {togglePassword_cp ? (
+            <FiEye className="eye" onClick={handleViewPassword_cp} />
+          ) : (
+            <FiEyeOff className="eye-off" onClick={handleViewPassword_cp} />
+          )}
+        </div>
+
+        <button className="button">Sign up</button>
+      </form>
+    </main>
   );
 }
 

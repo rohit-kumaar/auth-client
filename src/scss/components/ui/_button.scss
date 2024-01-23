@@ -1,0 +1,21 @@
+.button {
+  padding: 10px;
+  border: 0;
+  font-size: 20px;
+  text-transform: uppercase;
+  background: $primary;
+  background: linear-gradient(
+    74deg,
+    rgba(10, 198, 223, 1) 0%,
+    rgba(36, 104, 211, 1) 60%,
+    rgba(4, 121, 201, 1) 100%
+  );
+  color: $white;
+  font-weight: 700;
+  transition: all 300ms;
+
+  &:focus-visible,
+  &:hover {
+    background: $linear-gradient;
+  }
+}

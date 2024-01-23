@@ -1,9 +1,13 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { FiEye, FiEyeOff } from "react-icons/fi";
+import TogglePassword from "../hooks/TogglePassword";
 
 const url = "http://localhost:4000/api/v1";
 
 function Login() {
+  const { togglePassword, handleViewPassword } = TogglePassword();
+
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -31,27 +35,37 @@ function Login() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <input
-          type="text"
-          placeholder="Enter your email"
-          name="email"
-          onChange={handleChange}
-        />
-      </div>
+    <main>
+      <form onSubmit={handleSubmit}>
+        <h1>Login</h1>
 
-      <div>
-        <input
-          type="password"
-          placeholder="Enter password"
-          name="password"
-          onChange={handleChange}
-        />
-      </div>
+        <div>
+          <input
+            type="text"
+            placeholder="Enter your email"
+            name="email"
+            onChange={handleChange}
+          />
+        </div>
 
-      <button>Login</button>
-    </form>
+        <div className="password__wrapper">
+          <input
+            type={togglePassword ? "text" : "password"}
+            placeholder="Enter password"
+            name="password"
+            onChange={handleChange}
+          />
+
+          {togglePassword ? (
+            <FiEye className="eye" onClick={handleViewPassword} />
+          ) : (
+            <FiEyeOff className="eye-off" onClick={handleViewPassword} />
+          )}
+        </div>
+
+        <button className="button">Login</button>
+      </form>
+    </main>
   );
 }
 
