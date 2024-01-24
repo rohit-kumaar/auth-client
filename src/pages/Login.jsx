@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { FiEye, FiEyeOff } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import TogglePassword from "../hooks/TogglePassword";
 import { ROUTE_PATH } from "../routes/path";
 
@@ -9,6 +9,7 @@ const url = "http://localhost:4000/api/v1";
 
 function Login() {
   const { togglePassword, handleViewPassword } = TogglePassword();
+  const navigate = useNavigate();
 
   const [user, setUser] = useState({
     email: "",
@@ -27,9 +28,10 @@ function Login() {
       .post(`${url}/login`, user)
       .then((res) => {
         const data = res.data;
-        console.log(data);
+        const token = data.result.token;
 
         if (data.status === 201) {
+          localStorage.setItem("userDataToken", token);
           navigate(ROUTE_PATH.DASHBOARD);
         }
       })
