@@ -26,7 +26,7 @@ function Login() {
 
     axios
       .post(`${url}/login`, user)
-      .then((res) => {
+      .then((res) => {  
         const data = res.data;
         const token = data.result.token;
 

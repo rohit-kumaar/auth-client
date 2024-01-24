@@ -3,4 +3,5 @@ export const ROUTE_PATH = {
   SIGNUP: "/sign-up",
   LOGIN: "/login",
   DASHBOARD: "/dashboard",
+  ERROR: "*",
 };
