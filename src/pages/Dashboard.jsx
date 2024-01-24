@@ -11,9 +11,9 @@ const url = "http://localhost:4000/api/v1";
 function Dashboard() {
   const token = localStorage.getItem("userDataToken");
   const navigate = useNavigate();
-  const select = useSelector(selectUser);
   const dispatch = useDispatch();
-  // console.log(select);
+  const select = useSelector(selectUser);
+  // console.log(select.validUserOne.email);
 
   const dashboardValid = async () => {
     axios({
@@ -27,11 +27,11 @@ function Dashboard() {
       .then((res) => {
         const data = res.data;
         // console.log(data);
-        dispatch(setUserData(data));
 
         if (data.status == 401 || !data) {
           navigate(ROUTE_PATH.ERROR);
         } else {
+          dispatch(setUserData(data));
           navigate(ROUTE_PATH.DASHBOARD);
         }
       })
@@ -41,7 +41,12 @@ function Dashboard() {
   };
 
   useEffect(() => {
-    dashboardValid();
+    const storedUserData = JSON.parse(localStorage.getItem("userData"));
+    if (storedUserData) {
+      dispatch(setUserData(storedUserData));
+    } else {
+      dashboardValid();
+    }
   }, []);
 
   return (
