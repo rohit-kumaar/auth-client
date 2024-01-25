@@ -1,14 +1,14 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import "./App.scss";
 import store from "./app/store.js";
-import Dashboard from "./pages/Dashboard.jsx";
-import Error from "./pages/Error.jsx";
-import Login from "./pages/Login.jsx";
-import SignUp from "./pages/SignUp.jsx";
 import { ROUTE_PATH } from "./routes/path.js";
+const Dashboard = lazy(() => import("./pages/Dashboard.jsx"));
+const Error = lazy(() => import("./pages/Error.jsx"));
+const Login = lazy(() => import("./pages/Login.jsx"));
+const SignUp = lazy(() => import("./pages/SignUp.jsx"));
 
 const router = createBrowserRouter([
   {
@@ -32,7 +32,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Provider store={store}>
     <React.StrictMode>
-      <RouterProvider router={router} />
+      <Suspense fallback="Loading...">
+        <RouterProvider router={router} />
+      </Suspense>
     </React.StrictMode>
   </Provider>
 );

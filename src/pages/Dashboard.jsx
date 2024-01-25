@@ -13,20 +13,17 @@ function Dashboard() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const select = useSelector(selectUser);
-  // console.log(select.validUserOne.email);
 
   const dashboardValid = async () => {
-    axios({
-      method: "get",
-      baseURL: `${url}/valid-user`,
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: token,
-      },
-    })
+    axios
+      .get(`${url}/valid-user`, {
+        headers: {
+          Authorization: token,
+        },
+      })
       .then((res) => {
         const data = res.data;
-        // console.log(data);
+        console.log(data);
 
         if (data.status == 401 || !data) {
           navigate(ROUTE_PATH.ERROR);
@@ -37,6 +34,37 @@ function Dashboard() {
       })
       .catch((err) => {
         console.log(err);
+      });
+  };
+
+  const handleLogout = async () => {
+    console.log("logout");
+    const token = localStorage.getItem("userDataToken");
+    const CancelToken = axios.CancelToken;
+    const source = CancelToken.source();
+
+    axios
+      .get(`${url}/logout`, {
+        headers: {
+          Authorization: token,
+          cancelToken: source.token,
+        },
+      })
+      .then((res) => {
+        const data = res.data;
+        console.log(data);
+
+        if (data.status == 201) {
+          console.log("User logout");
+          localStorage.removeItem("userDataToken");
+          dispatch(setUserData(false));
+          navigate(ROUTE_PATH.DEFAULT);
+        }
+      })
+      .catch((thrown) => {
+        if (axios.isCancel(thrown)) {
+          console.log("Request canceled", thrown.message);
+        }
       });
   };
 
@@ -51,7 +79,13 @@ function Dashboard() {
 
   return (
     <div>
-      <Header /> Dashboard component user email is : {select.validUserOne.email}
+      <Header /> Dashboard component user email is :
+      <b>{select?.validUserOne?.email}</b>
+      <div>
+        <button className="button" onClick={handleLogout}>
+          Logout
+        </button>
+      </div>
     </div>
   );
 }
