@@ -3,10 +3,9 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
+import { API_URL } from "../config/config";
 import { selectUser, setUserData } from "../features/userSlice";
 import { ROUTE_PATH } from "../routes/path";
-
-const url = "http://localhost:4000/api/v1";
 
 function Dashboard() {
   const token = localStorage.getItem("userDataToken");
@@ -16,14 +15,14 @@ function Dashboard() {
 
   const dashboardValid = async () => {
     axios
-      .get(`${url}/valid-user`, {
+      .get(`${API_URL}/valid-user`, {
         headers: {
           Authorization: token,
         },
       })
       .then((res) => {
         const data = res.data;
-        console.log(data);
+        // console.log(data);
 
         if (data.status == 401 || !data) {
           navigate(ROUTE_PATH.ERROR);
@@ -44,7 +43,7 @@ function Dashboard() {
     const source = CancelToken.source();
 
     axios
-      .get(`${url}/logout`, {
+      .get(`${API_URL}/logout`, {
         headers: {
           Authorization: token,
           cancelToken: source.token,
@@ -57,7 +56,7 @@ function Dashboard() {
         if (data.status == 201) {
           console.log("User logout");
           localStorage.removeItem("userDataToken");
-          dispatch(setUserData(false));
+          localStorage.removeItem("userData");
           navigate(ROUTE_PATH.DEFAULT);
         }
       })

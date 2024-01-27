@@ -2,10 +2,9 @@ import axios from "axios";
 import React, { useState } from "react";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { Link, useNavigate } from "react-router-dom";
+import { API_URL } from "../config/config";
 import useTogglePassword from "../hooks/useTogglePassword";
 import { ROUTE_PATH } from "../routes/path";
-
-const url = "http://localhost:4000/api/v1";
 
 function SignUp() {
   const {
@@ -35,7 +34,7 @@ function SignUp() {
     e.preventDefault();
 
     axios
-      .post(`${url}/sign-up`, user)
+      .post(`${API_URL}/sign-up`, user)
       .then((res) => {
         const data = res.data;
 
