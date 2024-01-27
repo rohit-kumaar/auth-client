@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { lazy, useEffect, useState } from "react";
+import React, { lazy, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import "./App.scss";
