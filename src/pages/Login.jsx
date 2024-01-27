@@ -2,13 +2,13 @@ import axios from "axios";
 import React, { useState } from "react";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { Link, useNavigate } from "react-router-dom";
-import TogglePassword from "../hooks/TogglePassword";
+import useTogglePassword from "../hooks/useTogglePassword";
 import { ROUTE_PATH } from "../routes/path";
 
 const url = "http://localhost:4000/api/v1";
 
 function Login() {
-  const { togglePassword, handleViewPassword } = TogglePassword();
+  const { togglePassword, handleViewPassword } = useTogglePassword();
   const navigate = useNavigate();
 
   const [user, setUser] = useState({

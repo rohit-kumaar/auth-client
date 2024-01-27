@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { Link, useNavigate } from "react-router-dom";
-import TogglePassword from "../hooks/TogglePassword";
+import useTogglePassword from "../hooks/useTogglePassword";
 import { ROUTE_PATH } from "../routes/path";
 
 const url = "http://localhost:4000/api/v1";
@@ -11,11 +11,11 @@ function SignUp() {
   const {
     togglePassword: togglePassword_p,
     handleViewPassword: handleViewPassword_p,
-  } = TogglePassword();
+  } = useTogglePassword();
   const {
     togglePassword: togglePassword_cp,
     handleViewPassword: handleViewPassword_cp,
-  } = TogglePassword();
+  } = useTogglePassword();
 
   const [user, setUser] = useState({
     name: "",

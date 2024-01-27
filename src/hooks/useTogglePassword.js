@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function TogglePassword() {
+function useTogglePassword() {
   const [togglePassword, setTogglePassword] = useState(false);
 
   const handleViewPassword = () => {
@@ -10,4 +10,4 @@ function TogglePassword() {
   return { togglePassword, handleViewPassword };
 }
 
-export default TogglePassword;
+export default useTogglePassword;
