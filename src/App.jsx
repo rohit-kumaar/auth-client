@@ -6,7 +6,6 @@ import "./App.scss";
 import { API_URL } from "./config/config.js";
 import { setUserData } from "./features/userSlice.js";
 import { ROUTE_PATH } from "./routes/path.js";
-import ProtectedRoute from "./routes/ProtectedRoute.js";
 const Dashboard = lazy(() => import("./pages/Dashboard.jsx"));
 const Error = lazy(() => import("./pages/Error.jsx"));
 const Login = lazy(() => import("./pages/Login.jsx"));

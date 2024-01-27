@@ -5,9 +5,11 @@ import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import { API_URL } from "../config/config";
 import { selectUser, setUserData } from "../features/userSlice";
+import { useTitle } from "../hooks/useTitle";
 import { ROUTE_PATH } from "../routes/path";
 
 function Dashboard() {
+  useTitle("Dashboard");
   const token = localStorage.getItem("userDataToken");
   const navigate = useNavigate();
   const dispatch = useDispatch();

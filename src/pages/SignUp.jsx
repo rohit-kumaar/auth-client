@@ -3,10 +3,12 @@ import React, { useState } from "react";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { Link, useNavigate } from "react-router-dom";
 import { API_URL } from "../config/config";
+import { useTitle } from "../hooks/useTitle";
 import useTogglePassword from "../hooks/useTogglePassword";
 import { ROUTE_PATH } from "../routes/path";
 
 function SignUp() {
+  useTitle("Sign Up");
   const {
     togglePassword: togglePassword_p,
     handleViewPassword: handleViewPassword_p,
