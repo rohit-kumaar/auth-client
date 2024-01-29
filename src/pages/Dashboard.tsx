@@ -1,7 +1,7 @@
-import axios from "axios";
+import axios, { AxiosHeaders } from "axios";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
 import Header from "../components/Header";
 import { API_URL } from "../config/config";
 import { selectUser, setUserData } from "../features/userSlice";
@@ -12,8 +12,8 @@ function Dashboard() {
   useTitle("Dashboard");
   const token = localStorage.getItem("userDataToken");
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const select = useSelector(selectUser);
+  const dispatch = useAppDispatch();
+  const select = useAppSelector(selectUser);
 
   const dashboardValid = async () => {
     axios
