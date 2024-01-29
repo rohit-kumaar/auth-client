@@ -1,15 +1,15 @@
 import axios from "axios";
-import React, { lazy, useEffect } from "react";
+import { lazy, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import "./App.scss";
 import { API_URL } from "./config/config.js";
 import { setUserData } from "./features/userSlice.js";
 import { ROUTE_PATH } from "./routes/path.js";
-const Dashboard = lazy(() => delayForDemo(import("./pages/Dashboard.jsx")));
-const Error = lazy(() => delayForDemo(import("./pages/Error.jsx")));
-const Login = lazy(() => delayForDemo(import("./pages/Login.jsx")));
-const SignUp = lazy(() => delayForDemo(import("./pages/SignUp.jsx")));
+const Dashboard = lazy(() => delayForDemo(import("./pages/Dashboard.tsx")));
+const Error = lazy(() => delayForDemo(import("./pages/Error.tsx")));
+const Login = lazy(() => delayForDemo(import("./pages/Login.tsx")));
+const SignUp = lazy(() => delayForDemo(import("./pages/SignUp.tsx")));
 
 async function delayForDemo(promise) {
   await new Promise((resolve) => {
