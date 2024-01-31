@@ -1,4 +1,4 @@
-import axios, { AxiosHeaders } from "axios";
+import axios from "axios";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
@@ -70,7 +70,9 @@ function Dashboard() {
   };
 
   useEffect(() => {
-    const storedUserData = JSON.parse(localStorage.getItem("userData"));
+    const localData = localStorage.getItem("userData");
+
+    const storedUserData = localData ? JSON.parse(localData) : null;
     if (storedUserData) {
       dispatch(setUserData(storedUserData));
     } else {

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { Link, useNavigate } from "react-router-dom";
 import { API_URL } from "../config/config";
@@ -7,22 +7,27 @@ import { useTitle } from "../hooks/useTitle";
 import useTogglePassword from "../hooks/useTogglePassword";
 import { ROUTE_PATH } from "../routes/path";
 
+interface IUser {
+  email: string;
+  password: any;
+}
+
 function Login() {
   useTitle("Login");
   const { togglePassword, handleViewPassword } = useTogglePassword();
   const navigate = useNavigate();
 
-  const [user, setUser] = useState({
+  const [user, setUser] = useState<IUser>({
     email: "",
     password: "",
   });
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setUser((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     axios

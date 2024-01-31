@@ -1,11 +1,18 @@
 import axios from "axios";
-import { useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { Link, useNavigate } from "react-router-dom";
 import { API_URL } from "../config/config";
 import { useTitle } from "../hooks/useTitle";
 import useTogglePassword from "../hooks/useTogglePassword";
 import { ROUTE_PATH } from "../routes/path";
+
+interface IUser {
+  name: string;
+  email: string;
+  password: any;
+  cpassword: any;
+}
 
 function SignUp() {
   useTitle("Sign Up");
@@ -18,7 +25,7 @@ function SignUp() {
     handleViewPassword: handleViewPassword_cp,
   } = useTogglePassword();
 
-  const [user, setUser] = useState({
+  const [user, setUser] = useState<IUser>({
     name: "",
     email: "",
     password: "",
@@ -27,12 +34,12 @@ function SignUp() {
 
   const navigate = useNavigate();
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setUser((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     axios
