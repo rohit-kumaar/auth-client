@@ -6,12 +6,12 @@ import "./App.scss";
 import { API_URL } from "./config/config.js";
 import { setUserData } from "./features/userSlice.js";
 import { ROUTE_PATH } from "./routes/path.js";
-const Dashboard = lazy(() => delayForDemo(import("./pages/Dashboard.tsx")));
+const Dashboard = lazy(() => import("./pages/Dashboard.tsx"));
 const Error = lazy(() => delayForDemo(import("./pages/Error.tsx")));
 const Login = lazy(() => delayForDemo(import("./pages/Login.tsx")));
 const SignUp = lazy(() => delayForDemo(import("./pages/SignUp.tsx")));
 
-async function delayForDemo(promise) {
+async function delayForDemo(promise: any) {
   await new Promise((resolve) => {
     setTimeout(resolve, 2000);
   });

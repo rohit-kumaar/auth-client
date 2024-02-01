@@ -13,7 +13,7 @@ function Dashboard() {
   const token = localStorage.getItem("userDataToken");
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const select = useAppSelector(selectUser);
+  const select: any = useAppSelector(selectUser);
 
   const dashboardValid = async () => {
     axios
@@ -42,7 +42,7 @@ function Dashboard() {
     console.log("logout");
     const token = localStorage.getItem("userDataToken");
     const CancelToken = axios.CancelToken;
-    const source = CancelToken.source();
+    const source: any = CancelToken.source();
 
     axios
       .get(`${API_URL}/logout`, {
