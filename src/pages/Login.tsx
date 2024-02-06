@@ -6,18 +6,14 @@ import { API_URL } from "../config/config";
 import { useTitle } from "../hooks/useTitle";
 import useTogglePassword from "../hooks/useTogglePassword";
 import { ROUTE_PATH } from "../routes/path";
-
-interface IUser {
-  email: string;
-  password: any;
-}
+import { IUserLogin } from "../ts/interface";
 
 function Login() {
   useTitle("Login");
   const { togglePassword, handleViewPassword } = useTogglePassword();
   const navigate = useNavigate();
 
-  const [user, setUser] = useState<IUser>({
+  const [user, setUser] = useState<IUserLogin>({
     email: "",
     password: "",
   });
@@ -45,42 +41,40 @@ function Login() {
   };
 
   return (
-    <main>
-      <form onSubmit={handleSubmit}>
-        <h1>Login</h1>
+    <form onSubmit={handleSubmit}>
+      <h1>Login</h1>
 
-        <div>
-          <input
-            type="text"
-            placeholder="Enter your email"
-            name="email"
-            onChange={handleChange}
-          />
-        </div>
+      <div>
+        <input
+          type="text"
+          placeholder="Enter your email"
+          name="email"
+          onChange={handleChange}
+        />
+      </div>
 
-        <div className="password__wrapper">
-          <input
-            type={togglePassword ? "text" : "password"}
-            placeholder="Enter password"
-            name="password"
-            onChange={handleChange}
-          />
+      <div className="password__wrapper">
+        <input
+          type={togglePassword ? "text" : "password"}
+          placeholder="Enter password"
+          name="password"
+          onChange={handleChange}
+        />
 
-          {togglePassword ? (
-            <FiEye className="eye" onClick={handleViewPassword} />
-          ) : (
-            <FiEyeOff className="eye-off" onClick={handleViewPassword} />
-          )}
-        </div>
+        {togglePassword ? (
+          <FiEye className="eye" onClick={handleViewPassword} />
+        ) : (
+          <FiEyeOff className="eye-off" onClick={handleViewPassword} />
+        )}
+      </div>
 
-        <div className="forget">
-          <span>Forget Password</span>
-          <Link to={ROUTE_PATH.DEFAULT}>Sign up</Link>
-        </div>
+      <div className="forget">
+        <Link to={ROUTE_PATH.FORGET_PASSWORD}>Forget Password</Link>
+        <Link to={ROUTE_PATH.DEFAULT}>Sign up</Link>
+      </div>
 
-        <button className="button">Login</button>
-      </form>
-    </main>
+      <button className="button">Login</button>
+    </form>
   );
 }
 

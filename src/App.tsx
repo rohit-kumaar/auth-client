@@ -7,6 +7,8 @@ import { API_URL } from "./config/config.js";
 import { setUserData } from "./features/userSlice.js";
 import { ROUTE_PATH } from "./routes/path.js";
 const Dashboard = lazy(() => import("./pages/Dashboard.tsx"));
+const ForgetPassword = lazy(() => import("./pages/ForgetPassword.tsx"));
+const PasswordReset = lazy(() => import("./pages/PasswordReset.tsx"));
 const Error = lazy(() => delayForDemo(import("./pages/Error.tsx")));
 const Login = lazy(() => delayForDemo(import("./pages/Login.tsx")));
 const SignUp = lazy(() => delayForDemo(import("./pages/SignUp.tsx")));
@@ -56,6 +58,8 @@ function App() {
       <Route path={ROUTE_PATH.LOGIN} element={<Login />} />
       <Route path={ROUTE_PATH.DASHBOARD} element={<Dashboard />} />
       <Route path={ROUTE_PATH.ERROR} element={<Error />} />
+      <Route path={ROUTE_PATH.FORGET_PASSWORD} element={<ForgetPassword />} />
+      <Route path={ROUTE_PATH.PASSWORD_RESET} element={<PasswordReset />} />
     </Routes>
   );
 }

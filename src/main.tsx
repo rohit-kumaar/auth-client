@@ -14,7 +14,9 @@ root.render(
     <React.StrictMode>
       <Suspense fallback="Loading...">
         <BrowserRouter>
-          <App />
+          <main>
+            <App />
+          </main>
         </BrowserRouter>
       </Suspense>
     </React.StrictMode>

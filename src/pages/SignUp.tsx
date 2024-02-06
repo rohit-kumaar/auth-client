@@ -6,13 +6,7 @@ import { API_URL } from "../config/config";
 import { useTitle } from "../hooks/useTitle";
 import useTogglePassword from "../hooks/useTogglePassword";
 import { ROUTE_PATH } from "../routes/path";
-
-interface IUser {
-  name: string;
-  email: string;
-  password: any;
-  cpassword: any;
-}
+import { IUserSignUp } from "../ts/interface";
 
 function SignUp() {
   useTitle("Sign Up");
@@ -25,7 +19,7 @@ function SignUp() {
     handleViewPassword: handleViewPassword_cp,
   } = useTogglePassword();
 
-  const [user, setUser] = useState<IUser>({
+  const [user, setUser] = useState<IUserSignUp>({
     name: "",
     email: "",
     password: "",
@@ -56,64 +50,62 @@ function SignUp() {
   };
 
   return (
-    <main>
-      <form onSubmit={handleSubmit}>
-        <h1>Sign Up</h1>
+    <form onSubmit={handleSubmit}>
+      <h1>Sign Up</h1>
 
-        <div>
-          <input
-            type="text"
-            placeholder="Enter user name"
-            name="name"
-            onChange={handleChange}
-          />
-        </div>
+      <div>
+        <input
+          type="text"
+          placeholder="Enter user name"
+          name="name"
+          onChange={handleChange}
+        />
+      </div>
 
-        <div>
-          <input
-            type="text"
-            placeholder="Enter your email"
-            name="email"
-            onChange={handleChange}
-          />
-        </div>
+      <div>
+        <input
+          type="text"
+          placeholder="Enter your email"
+          name="email"
+          onChange={handleChange}
+        />
+      </div>
 
-        <div className="password__wrapper">
-          <input
-            type={togglePassword_p ? "text" : "password"}
-            placeholder="Enter password"
-            name="password"
-            onChange={handleChange}
-          />
-          {togglePassword_p ? (
-            <FiEye className="eye" onClick={handleViewPassword_p} />
-          ) : (
-            <FiEyeOff className="eye-off" onClick={handleViewPassword_p} />
-          )}
-        </div>
+      <div className="password__wrapper">
+        <input
+          type={togglePassword_p ? "text" : "password"}
+          placeholder="Enter password"
+          name="password"
+          onChange={handleChange}
+        />
+        {togglePassword_p ? (
+          <FiEye className="eye" onClick={handleViewPassword_p} />
+        ) : (
+          <FiEyeOff className="eye-off" onClick={handleViewPassword_p} />
+        )}
+      </div>
 
-        <div className="password__wrapper">
-          <input
-            type={togglePassword_cp ? "text" : "password"}
-            placeholder="Confirm your password"
-            name="cpassword"
-            onChange={handleChange}
-          />
-          {togglePassword_cp ? (
-            <FiEye className="eye" onClick={handleViewPassword_cp} />
-          ) : (
-            <FiEyeOff className="eye-off" onClick={handleViewPassword_cp} />
-          )}
-        </div>
+      <div className="password__wrapper">
+        <input
+          type={togglePassword_cp ? "text" : "password"}
+          placeholder="Confirm your password"
+          name="cpassword"
+          onChange={handleChange}
+        />
+        {togglePassword_cp ? (
+          <FiEye className="eye" onClick={handleViewPassword_cp} />
+        ) : (
+          <FiEyeOff className="eye-off" onClick={handleViewPassword_cp} />
+        )}
+      </div>
 
-        <div className="forget">
-          <span>Forget Password</span>
-          <Link to={ROUTE_PATH.LOGIN}>Login</Link>
-        </div>
+      <div className="forget">
+        <span>Forget Password</span>
+        <Link to={ROUTE_PATH.LOGIN}>Login</Link>
+      </div>
 
-        <button className="button">Sign up</button>
-      </form>
-    </main>
+      <button className="button">Sign up</button>
+    </form>
   );
 }
 

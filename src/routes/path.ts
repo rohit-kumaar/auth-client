@@ -4,4 +4,6 @@ export const ROUTE_PATH = {
   LOGIN: "/login",
   DASHBOARD: "/dashboard",
   ERROR: "*",
+  FORGET_PASSWORD: "/forget-password",
+  PASSWORD_RESET: "/password-reset/:id/:token",
 };
